@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+#component {
+    display: flex;
+    gap: 30px; /* 30px 간격 */
+    flex-wrap: wrap; /* Allow items to wrap to the next line if container is too small */
+    justify-content: flex-start; /* Align items to the start */
+}
+
+.item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 40px 30px; /* 상하 40px / 좌우 30px 여백 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0; /* Prevent items from shrinking */
+    width: calc((100% - 30px * 2) / 3); /* Example: 3 items per row with gap */
+    min-width: 250px; /* Minimum width for item */
+    position: relative; /* For icon_wrap popup positioning reference */
+    box-sizing:border-box; /* Include padding and border in width calculation */
+}
+
+.item .title {
+    font-size: 24px; /* 24px 사이즈의 타이틀 */
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.item .subtext {
+    font-size: 16px; /* 16px 사이즈의 서브텍스트 */
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.icon_wrap {
+    display: flex;
+    align-items: center;
+    position: relative; /* For popup positioning */
+    gap: 10px; /* Space between icons */
+}
+
+.icon_wrap .icon {
+    font-size: 20px;
+    cursor: pointer;
+    position: relative; /* Make icon a positioning context for its popup */
+}
+
+.icon .popup {
+    display: none; /* 기본적으로 숨김 */
+    position: absolute;
+    top: 100%; /* 아이콘 아래에 표시 */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 10;
+    margin-top: 5px; /* 아이콘과 팝업 사이 5px 간격 */
+    /* 말풍선 꼬리 */
+}
+
+.icon .popup::after { /* Use ::after for the pseudo-element */
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent #333 transparent; /* 꼬리가 위로 향하도록 */
+    top: -6px; /* 꼬리 위치 조정 */
+}
+
+.icon:hover .popup {
+    display: block; /* 마우스 올리면 표시 */
+}
